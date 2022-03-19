@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc -b tsconfig.json && node ."
   },
   "repository": {
     "type": "git",

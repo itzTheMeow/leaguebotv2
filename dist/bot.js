@@ -11,6 +11,7 @@ const MatchManager_1 = __importDefault(require("./MatchManager"));
 const join_1 = __importDefault(require("./cmds/join"));
 const leave_1 = __importDefault(require("./cmds/leave"));
 const next_1 = __importDefault(require("./cmds/next"));
+const notify_1 = __importDefault(require("./cmds/notify"));
 const QueueManager_1 = __importDefault(require("./QueueManager"));
 exports.bot = new discord_js_1.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"] });
 exports.matchMan = new MatchManager_1.default();
@@ -27,11 +28,14 @@ exports.bot.on("messageCreate", (message) => {
         case "join":
             (0, join_1.default)(message);
             break;
+        case "leave":
+            (0, leave_1.default)(message);
+            break;
         case "next":
             (0, next_1.default)(message);
             break;
-        case "leave":
-            (0, leave_1.default)(message);
+        case "notify":
+            (0, notify_1.default)(message);
             break;
     }
 });

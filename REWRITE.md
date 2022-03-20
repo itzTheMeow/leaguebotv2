@@ -1,7 +1,5 @@
 ## TODO:
 
-- leave command
-- notify command and role
 - player list command
 - register command
 - register button

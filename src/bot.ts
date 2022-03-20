@@ -6,6 +6,7 @@ import MatchManager from "./MatchManager";
 import joinCommand from "./cmds/join";
 import leaveCommand from "./cmds/leave";
 import nextCommand from "./cmds/next";
+import notifyCommand from "./cmds/notify";
 import Queue from "./QueueManager";
 
 export const bot = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"] });
@@ -26,11 +27,14 @@ bot.on("messageCreate", (message) => {
     case "join":
       joinCommand(message);
       break;
+    case "leave":
+      leaveCommand(message);
+      break;
     case "next":
       nextCommand(message);
       break;
-    case "leave":
-      leaveCommand(message);
+    case "notify":
+      notifyCommand(message);
       break;
   }
 });

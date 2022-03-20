@@ -1,5 +1,5 @@
 import fs from "fs";
-import { Client } from "discord.js";
+import { Client, Guild, GuildMember, TextBasedChannel } from "discord.js";
 import config from "./config";
 import MatchManager from "./MatchManager";
 import Queue from "./QueueManager";
@@ -44,6 +44,24 @@ bot.on("messageCreate", (message) => {
     case "times":
       timesCommand(message);
       break;
+  }
+});
+
+bot.on("interactionCreate", async (interaction) => {
+  const mem = interaction.member as GuildMember;
+  const guild = interaction.guild as Guild;
+
+  if (interaction.isButton()) {
+    if (interaction.customId == "register") {
+      const role = guild.roles.cache.find((r) => r.name == config.notifRole);
+      if (role) mem.roles.add(role);
+      const chan = guild.channels.cache.find(
+        (c) => c.name == config.generalChannel
+      ) as TextBasedChannel;
+      if (chan) chan.send(`${mem.toString()} has become a league member!`);
+      interaction.deferUpdate();
+      return;
+    }
   }
 });
 

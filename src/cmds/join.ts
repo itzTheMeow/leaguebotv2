@@ -22,6 +22,12 @@ To get notified when matches open up, use \`${config.prefix}notify\`.`
 
   const match = matchMan.nextMatch();
 
+  if (queue.players.length >= 12)
+    return message.reply({
+      content: "The match is full!",
+      embeds: [playersEmbed(queue)],
+    });
+
   if (queue.add(message.author)) {
     message.reply({
       content: `${message.author.toString()} has joined the ${matchName(match)} match!`,

@@ -1,10 +1,8 @@
 ## TODO:
 
-- register button
+- match starter
+- report card sender
+- leaderboard updater
+- points manager
 
 - way more that im not gonna list
-
-## DONE:
-
-- next command
-- match manager

@@ -5,9 +5,13 @@ import MatchManager from "./MatchManager";
 
 import joinCommand from "./cmds/join";
 import nextCommand from "./cmds/next";
+import Queue from "./QueueManager";
 
 export const bot = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"] });
 export const matchMan = new MatchManager();
+export const queue = new Queue();
+
+queue.start(matchMan.nextMatch());
 
 bot.on("ready", () => {
   console.log(`Logged in as ${bot.user.tag}!`);
@@ -26,7 +30,5 @@ bot.on("messageCreate", (message) => {
       break;
   }
 });
-
-matchMan.nextMatch();
 
 bot.login(fs.readFileSync("token").toString().trim());

@@ -12,7 +12,7 @@ export default function nextCommand(message: Message) {
         .setDescription(
           `Use \`${config.prefix}notify\` to be pinged when matches open for joining.`
         )
-        .setColor(config.colors.blue)
+        .setColor("BLUE")
         .addField("Match Starts", buildTimestamp(match)),
     ],
   });

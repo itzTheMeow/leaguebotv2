@@ -1,7 +1,5 @@
 ## TODO:
 
-- queue manager
-- finish join command
 - leave command
 - notify command and role
 - player list command

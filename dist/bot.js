@@ -3,15 +3,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.matchMan = exports.bot = void 0;
+exports.queue = exports.matchMan = exports.bot = void 0;
 const fs_1 = __importDefault(require("fs"));
 const discord_js_1 = require("discord.js");
 const config_1 = __importDefault(require("./config"));
 const MatchManager_1 = __importDefault(require("./MatchManager"));
 const join_1 = __importDefault(require("./cmds/join"));
 const next_1 = __importDefault(require("./cmds/next"));
+const QueueManager_1 = __importDefault(require("./QueueManager"));
 exports.bot = new discord_js_1.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"] });
 exports.matchMan = new MatchManager_1.default();
+exports.queue = new QueueManager_1.default();
+exports.queue.start(exports.matchMan.nextMatch());
 exports.bot.on("ready", () => {
     console.log(`Logged in as ${exports.bot.user.tag}!`);
     exports.bot.user.setActivity(config_1.default.status);
@@ -28,5 +31,4 @@ exports.bot.on("messageCreate", (message) => {
             break;
     }
 });
-exports.matchMan.nextMatch();
 exports.bot.login(fs_1.default.readFileSync("token").toString().trim());

@@ -15,9 +15,9 @@ export default function joinCommand(message: Message) {
     return message.reply(
       `There are no matches open for joining currently!
 
-To see when the next match is, use \`${config.prefix}next\`
+To see when the next match is, use \`${config.prefix}next\`.
 To see a list of all match times, use \`${config.prefix}times\`.
-To get notified when matches open up, use \`${config.prefix}notify\``
+To get notified when matches open up, use \`${config.prefix}notify\`.`
     );
 
   const match = matchMan.nextMatch();

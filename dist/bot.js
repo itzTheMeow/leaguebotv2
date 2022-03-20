@@ -13,6 +13,7 @@ const join_1 = __importDefault(require("./cmds/join"));
 const leave_1 = __importDefault(require("./cmds/leave"));
 const next_1 = __importDefault(require("./cmds/next"));
 const notify_1 = __importDefault(require("./cmds/notify"));
+const players_1 = __importDefault(require("./cmds/players"));
 const times_1 = __importDefault(require("./cmds/times"));
 exports.bot = new discord_js_1.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"] });
 exports.matchMan = new MatchManager_1.default();
@@ -37,6 +38,9 @@ exports.bot.on("messageCreate", (message) => {
             break;
         case "notify":
             (0, notify_1.default)(message);
+            break;
+        case "players":
+            (0, players_1.default)(message);
             break;
         case "times":
             (0, times_1.default)(message);

@@ -8,6 +8,7 @@ import joinCommand from "./cmds/join";
 import leaveCommand from "./cmds/leave";
 import nextCommand from "./cmds/next";
 import notifyCommand from "./cmds/notify";
+import playersCommand from "./cmds/players";
 import timesCommand from "./cmds/times";
 
 export const bot = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"] });
@@ -36,6 +37,9 @@ bot.on("messageCreate", (message) => {
       break;
     case "notify":
       notifyCommand(message);
+      break;
+    case "players":
+      playersCommand(message);
       break;
     case "times":
       timesCommand(message);

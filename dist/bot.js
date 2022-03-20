@@ -9,6 +9,7 @@ const discord_js_1 = require("discord.js");
 const config_1 = __importDefault(require("./config"));
 const MatchManager_1 = __importDefault(require("./MatchManager"));
 const join_1 = __importDefault(require("./cmds/join"));
+const leave_1 = __importDefault(require("./cmds/leave"));
 const next_1 = __importDefault(require("./cmds/next"));
 const QueueManager_1 = __importDefault(require("./QueueManager"));
 exports.bot = new discord_js_1.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"] });
@@ -28,6 +29,9 @@ exports.bot.on("messageCreate", (message) => {
             break;
         case "next":
             (0, next_1.default)(message);
+            break;
+        case "leave":
+            (0, leave_1.default)(message);
             break;
     }
 });

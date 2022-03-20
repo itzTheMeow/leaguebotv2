@@ -4,6 +4,7 @@ import config from "./config";
 import MatchManager from "./MatchManager";
 
 import joinCommand from "./cmds/join";
+import leaveCommand from "./cmds/leave";
 import nextCommand from "./cmds/next";
 import Queue from "./QueueManager";
 
@@ -27,6 +28,9 @@ bot.on("messageCreate", (message) => {
       break;
     case "next":
       nextCommand(message);
+      break;
+    case "leave":
+      leaveCommand(message);
       break;
   }
 });

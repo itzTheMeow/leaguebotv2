@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/AnnaBanana2577/leaguebotv2#readme",
   "dependencies": {
-    "discord.js": "^13.6.0"
+    "@types/luxon": "^2.3.1",
+    "discord.js": "^13.6.0",
+    "luxon": "^2.3.1"
   }
 }

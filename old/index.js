@@ -33,12 +33,6 @@ client.on("message", (message) => {
     case "players":
       require("./commands/players.js")(message);
       break;
-    case "next":
-      require("./commands/next.js")(message);
-      break;
-    case "test":
-      require("./commands/test.js")(message);
-      break;
     case "notify":
       require("./commands/notify.js")(message);
       break;

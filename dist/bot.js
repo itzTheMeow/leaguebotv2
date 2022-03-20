@@ -3,13 +3,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.matchMan = exports.bot = void 0;
 const fs_1 = __importDefault(require("fs"));
 const discord_js_1 = require("discord.js");
 const config_1 = __importDefault(require("./config"));
-const bot = new discord_js_1.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"] });
-bot.on("ready", () => {
-    console.log(`Logged in as ${bot.user.tag}!`);
-    console.log(bot.generateInvite({ scopes: ["bot"] }));
-    bot.user.setActivity(config_1.default.status);
+const MatchManager_1 = __importDefault(require("./MatchManager"));
+const join_1 = __importDefault(require("./cmds/join"));
+const next_1 = __importDefault(require("./cmds/next"));
+exports.bot = new discord_js_1.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"] });
+exports.matchMan = new MatchManager_1.default();
+exports.bot.on("ready", () => {
+    console.log(`Logged in as ${exports.bot.user.tag}!`);
+    exports.bot.user.setActivity(config_1.default.status);
 });
-bot.login(fs_1.default.readFileSync("token").toString().trim());
+exports.bot.on("messageCreate", (message) => {
+    if (!message.content.startsWith(config_1.default.prefix) || message.author.bot)
+        return;
+    switch (message.content.split(/ +/g)[0].substring(config_1.default.prefix.length).toLowerCase()) {
+        case "join":
+            (0, join_1.default)(message);
+            break;
+        case "next":
+            (0, next_1.default)(message);
+            break;
+    }
+});
+exports.matchMan.nextMatch();
+exports.bot.login(fs_1.default.readFileSync("token").toString().trim());

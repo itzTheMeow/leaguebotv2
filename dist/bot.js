@@ -8,11 +8,12 @@ const fs_1 = __importDefault(require("fs"));
 const discord_js_1 = require("discord.js");
 const config_1 = __importDefault(require("./config"));
 const MatchManager_1 = __importDefault(require("./MatchManager"));
+const QueueManager_1 = __importDefault(require("./QueueManager"));
 const join_1 = __importDefault(require("./cmds/join"));
 const leave_1 = __importDefault(require("./cmds/leave"));
 const next_1 = __importDefault(require("./cmds/next"));
 const notify_1 = __importDefault(require("./cmds/notify"));
-const QueueManager_1 = __importDefault(require("./QueueManager"));
+const times_1 = __importDefault(require("./cmds/times"));
 exports.bot = new discord_js_1.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS"] });
 exports.matchMan = new MatchManager_1.default();
 exports.queue = new QueueManager_1.default();
@@ -36,6 +37,9 @@ exports.bot.on("messageCreate", (message) => {
             break;
         case "notify":
             (0, notify_1.default)(message);
+            break;
+        case "times":
+            (0, times_1.default)(message);
             break;
     }
 });
